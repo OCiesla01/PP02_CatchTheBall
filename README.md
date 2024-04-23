@@ -10,5 +10,7 @@ The project has 8 levels, each of which differs:
 * the speed of the box.
 
 
-The project will be updated in the near future.
+***V0.2***
+
+Updated user interface for inter-level management. Optimized code.
 
