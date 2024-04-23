@@ -12,23 +12,25 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI ballsLeftText;
     public GameObject gameOverScreen;
+    public GameObject levelCompletedScreen;
 
     private Score scoreManager;
 
     public float ballsAmount;
     public float ballsRequiredToPass;
     public bool isGameActive = false;
-    public bool isLevelPassed = false;
-    // Start is called before the first frame update
+    private bool isLevelCompleted = false;
+
     void Start()
     {
         scoreManager = GameObject.Find("Box").GetComponent<Score>();
+        isGameActive = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateUI();
+        CheckLevelCompletion();
 
         if (ballsAmount == 0 && scoreManager.score < ballsRequiredToPass && isGameActive)
         {
@@ -44,11 +46,36 @@ public class GameManager : MonoBehaviour
         if (scoreManager.score >= ballsRequiredToPass)
         {
             scoreText.color = Color.green;
-            isLevelPassed = true;
         }
         else if (scoreManager.score < ballsRequiredToPass)
         {
             scoreText.color = Color.white;
+        }
+    }
+
+    void CheckLevelCompletion()
+    {
+        if (scoreManager.score >= ballsRequiredToPass && !isLevelCompleted)
+        {
+            isLevelCompleted = true;
+            LevelPassed();
+        }
+        else if (scoreManager.score < ballsRequiredToPass && isLevelCompleted)
+        {
+            isLevelCompleted = false;
+            LevelPassed();
+        }
+    }
+
+    void LevelPassed()
+    {
+        if (isGameActive && isLevelCompleted)
+        {
+            levelCompletedScreen.SetActive(true);
+        }
+        else
+        {
+            levelCompletedScreen.SetActive(false);
         }
     }
 
@@ -61,12 +88,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
-
-    void LevelPassed()
+   
+    public void BackToMenu()
     {
-        if (isGameActive && isLevelPassed)
-        {
-            Debug.Log("Level Passed");
-        }
+        SceneManager.LoadScene("GameScene");
     }
 }

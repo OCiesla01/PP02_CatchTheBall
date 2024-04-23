@@ -9,13 +9,12 @@ public class DropBall : MonoBehaviour
     private GameManager gameManager;
 
     private float yOffset = 3.0f;
-    // Start is called before the first frame update
+
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && gameManager.ballsAmount > 0) 

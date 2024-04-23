@@ -17,7 +17,7 @@ public class LevelButton : MonoBehaviour
     public float ballsAmount;
     public float ballsRequiredToPass = 99;
     public float boxMoveSpeed;
-    // Start is called before the first frame update
+
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -25,12 +25,6 @@ public class LevelButton : MonoBehaviour
 
         button = GetComponent<Button>();
         button.onClick.AddListener(OnButtonClick);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void OnButtonClick()

@@ -10,7 +10,6 @@ public class BoxMove : MonoBehaviour
     private float bound = 15.0f;
     public bool isActive = false;
 
-    // Update is called once per frame
     void Update()
     {
         if (isActive)
